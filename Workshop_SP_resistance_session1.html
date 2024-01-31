@@ -109,18 +109,6 @@ if (window.hljs) {
 
 <article class="topics" id="learnr-tutorial-content">
 
-<pre class="js"><code>$(document).ready(function() {
-  // Initialize Tutorial if necessary
-  Tutorial.addStep(...);
-  // Additional JavaScript code
-});</code></pre>
-<script type="text/javascript">
-$(document).ready(function() {
-  // Initialize Tutorial if necessary
-  Tutorial.addStep(...);
-  // Additional JavaScript code
-});
-</script>
 <div id="section-welcome" class="section level2">
 <h2>Welcome</h2>
 <p>In this practical you will learn to:</p>
@@ -314,7 +302,37 @@ chart:</p>
        aes(x=&quot;&quot;, y=&quot;&quot;, fill=haplotype)) +
        geom_bar(stat=&quot;identity&quot;, width=1) +
        coord_polar(&quot;y&quot;, start=0)+ theme_minimal() +ylab(&quot;&quot;) +xlab(&quot;&quot;)</code></pre>
-<p><img src="Workshop_SP_resistance_session1_files/figure-html/unnamed-chunk-8-1.png" width="624" /></p>
+<p><img src="Workshop_SP_resistance_session1_files/figure-html/graph5-1.png" width="624" /></p>
+<pre class="js"><code>shinyjs::extendShinyjs(text = &quot;shinyjs.showAlert = function(params) { alert(params); };&quot;)
+
+$(document).ready(function() {
+  // Your custom JavaScript code here
+  // Initialize Tutorial if necessary
+  Tutorial.addStep(...);
+  // Additional JavaScript code
+});
+
+shinyjs::useShinyjs()
+
+# Interactive button to trigger JavaScript
+actionButton(&quot;showAlertBtn&quot;, &quot;Show Alert&quot;, onclick = &quot;shinyjs.showAlert(&#39;Hello from JavaScript!&#39;);&quot;)
+</code></pre>
+<script type="text/javascript">
+shinyjs::extendShinyjs(text = "shinyjs.showAlert = function(params) { alert(params); };")
+
+$(document).ready(function() {
+  // Your custom JavaScript code here
+  // Initialize Tutorial if necessary
+  Tutorial.addStep(...);
+  // Additional JavaScript code
+});
+
+shinyjs::useShinyjs()
+
+# Interactive button to trigger JavaScript
+actionButton("showAlertBtn", "Show Alert", onclick = "shinyjs.showAlert('Hello from JavaScript!');")
+
+</script>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
@@ -431,11 +449,11 @@ learnr:::store_exercise_cache(structure(list(label = "q_prev_dhps", global_setup
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "prev_437g", question = structure("What is the prevalence of: dhps 437G?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b529aff", 
+"character")), answers = list(structure(list(id = "lnr_ans_9be5efa", 
     option = "31.25%", value = "31.25%", label = structure("31.25%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b7f101c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f828227", 
     option = "68.75%", value = "68.75%", label = structure("68.75%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -445,7 +463,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "prev_437g-answer", question = "prev_437g"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 614375856.213909, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 351463381.836337, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -453,19 +471,19 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "prev_540e", question = structure("What is the prevalence of: dhps 540E?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_148fc43", 
+"character")), answers = list(structure(list(id = "lnr_ans_9bd9459", 
     option = "51.56%", value = "51.56%", label = structure("51.56%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8e69344", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_35103f0", 
     option = "38.28%", value = "38.28%", label = structure("38.28%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d5e16d6", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_dd081b0", 
     option = "10.16%", value = "10.16%", label = structure("10.16%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d92fe29", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1d074a1", 
     option = "61.72%", value = "61.72%", label = structure("61.72%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -475,25 +493,25 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "prev_540e-answer", question = "prev_540e"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1265403904.91075, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1630129305.24091, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "prev_518g", question = structure("What is the prevalence of: dhps 581G?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_647fe7d", 
+"character")), answers = list(structure(list(id = "lnr_ans_d37f7db", 
     option = "21.88%", value = "21.88%", label = structure("21.88%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a7f24d3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1685c3c", 
     option = "36.72%", value = "36.72%", label = structure("36.72%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9460301", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f6079c7", 
     option = "14.84%", value = "14.84%", label = structure("14.84%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_55d295f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d6c91b", 
     option = "63.28%", value = "63.28%", label = structure("63.28%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
@@ -504,7 +522,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "prev_518g-answer", question = "prev_518g"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1209642140.43672, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1171824339.95433, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -512,10 +530,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "pre_613s", question = structure("What is the prevalence of: dhps 613S? (add a line to the code above to obtain this)", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d771ee8", 
+"character")), answers = list(structure(list(id = "lnr_ans_6b8398c", 
     option = "1.56%", value = "1.56%", label = structure("1.56%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f3573f9", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6fdfd8f", 
     option = "98.44%", value = "98.44%", label = structure("98.44%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
@@ -526,7 +544,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "pre_613s-answer", question = "pre_613s"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 49205794.4770868, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1734918413.69212, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -640,18 +658,18 @@ learnr:::store_exercise_cache(structure(list(label = "q_haplo_table", global_set
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "number_mixed", 
     question = structure("How many samples contain mixed infections at any of the 5 dhps loci?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_be5ea55", 
+    "character")), answers = list(structure(list(id = "lnr_ans_545fa74", 
         option = "0", value = "0", label = structure("0", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
         "character")), type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9c35fb3", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9d4e90f", 
         option = "25", value = "25", label = structure("25", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_10fce42", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_41b2d70", 
         option = "103", value = "103", label = structure("103", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
         "character")), type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a847098", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_15492e9", 
         option = "128", value = "128", label = structure("128", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
         "character")), type = "literal"), class = c("tutorial_question_answer", 
@@ -663,21 +681,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = NULL, post_message = NULL), ids = list(
         answer = "number_mixed-answer", question = "number_mixed"), 
     loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 340971870.841223, options = list()), class = c("learnr_radio", 
+    seed = 394539219.316278, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "freq_SAKAA", question = structure("dhps SAKAA :", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3948685", 
+"character")), answers = list(structure(list(id = "lnr_ans_99548f7", 
     option = "25.2%", value = "25.2%", label = structure("25.2%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3cfdb98", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8a18941", 
     option = "21.4%", value = "21.4%", label = structure("21.4%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_765b2a3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_186dfcb", 
     option = "27.2%", value = "27.2%", label = structure("27.2%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
@@ -688,21 +706,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "freq_SAKAA-answer", question = "freq_SAKAA"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1697607306.70949, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 309510274.355873, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "freq_SGEAA", question = structure("dhps SGEAA :", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d984586", 
+"character")), answers = list(structure(list(id = "lnr_ans_76af159", 
     option = "25.2%", value = "25.2%", label = structure("25.2%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e04da0b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a789eeb", 
     option = "21.4%", value = "21.4%", label = structure("21.4%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c5c9664", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ec5951d", 
     option = "27.2%", value = "27.2%", label = structure("27.2%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
@@ -713,7 +731,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "freq_SGEAA-answer", question = "freq_SGEAA"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1392587728.35153, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1613761980.24853, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -721,15 +739,15 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "freq_SGEGA", question = structure("dhps SGEGA :", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_9b23367", 
+"character")), answers = list(structure(list(id = "lnr_ans_52ad82f", 
     option = "25.2%", value = "25.2%", label = structure("25.2%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8fdc88e", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_99d1fbf", 
     option = "21.4%", value = "21.4%", label = structure("21.4%", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = structure("No", html = TRUE, class = c("html", 
     "character")), type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_792eb82", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6ab4d57", 
     option = "27.2%", value = "27.2%", label = structure("27.2%", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -739,7 +757,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "freq_SGEGA-answer", question = "freq_SGEGA"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 754223788.648787, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 2000952467.56823, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>

@@ -9,13 +9,8 @@ description: >
   Learn how to do some calculations of anti-malarial drug resistance. 
 
 ---
-```{js}
-$(document).ready(function() {
-  // Initialize Tutorial if necessary
-  Tutorial.addStep(...);
-  // Additional JavaScript code
-});
-```
+
+
 
 ```{r setup, include=FALSE, warning = FALSE}
 library(learnr)
@@ -236,10 +231,26 @@ question('dhps SGEGA :',
 
 You can visualize the frequency of haplotypes graphically using a pie chart: 
 
-```{r}
+```{r graph5}
 ggplot(subset(data, !is.na(haplotype)), 
        aes(x="", y="", fill=haplotype)) +
        geom_bar(stat="identity", width=1) +
        coord_polar("y", start=0)+ theme_minimal() +ylab("") +xlab("")
 ```
 
+```{js}
+shinyjs::extendShinyjs(text = "shinyjs.showAlert = function(params) { alert(params); };")
+
+$(document).ready(function() {
+  // Your custom JavaScript code here
+  // Initialize Tutorial if necessary
+  Tutorial.addStep(...);
+  // Additional JavaScript code
+});
+
+shinyjs::useShinyjs()
+
+# Interactive button to trigger JavaScript
+actionButton("showAlertBtn", "Show Alert", onclick = "shinyjs.showAlert('Hello from JavaScript!');")
+
+```
