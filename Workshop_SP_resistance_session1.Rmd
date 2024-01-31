@@ -1,0 +1,238 @@
+---
+title: "Capacity sharing workshop: Summarizing SP drug resistance"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  Learn how to do some calculations of anti-malarial drug resistance. 
+
+---
+
+```{r setup, include=FALSE, warning = FALSE}
+library(learnr)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(sf)
+library(scatterpie)
+
+
+tutorial_options(
+  exercise.timelimit = 60,
+  # A simple checker function that just returns the message in the check chunk
+  exercise.checker = function(check_code, ...) {
+    list(
+      message = eval(parse(text = check_code)),
+      correct = logical(0),
+      type = "info",
+      location = "append"
+    )
+  }
+)
+knitr::opts_chunk$set(error = TRUE)
+
+library(tidyverse) # loads dplyr, ggplot2, and others
+library(gtsummary)
+library(ggplot2)
+library(dplyr)
+library(sf)
+library(scatterpie)
+
+#setwd('C:/Users/AndriaMousa/OneDrive - London School of Hygiene and Tropical Medicine/Documents/tutorials and workshops/Gen E8 workshop/practical/')
+setwd('C:/Users/AndriaMousa/OneDrive - London School of Hygiene and Tropical Medicine/Documents/capacity sharing workshops/session 1/')
+
+data<-read.csv("site_A_data.csv")
+#data_DRC<-read.csv("DRC_data.csv")
+#DRC_adm1<- sf::st_read("gadm41_COD_1.shp")
+
+```
+
+## Welcome
+In this practical you will learn to:
+
+1. calculate the prevalence of resistance markers (SNPs) 
+2. estimate the frequency of resistance markers (SNPs)
+3. derive haplotypes and frequency of resistant haplotypes based on surveillance data
+4. summarize these metrics graphically
+
+
+For this session, we will use a hypothetical dataset collected from site A. Each row represents a sample from an individual patient.
+
+More information on the data is provided in the sections A, B and C.
+
+
+## A) Prevalence of resistance (SNPs)
+
+Resistance to pyrimethamine is conferred by mutations in the dhfr gene. There are 3 main mutations in the dhfr gene that are very common across sub-Saharan Africa. Resistance to sulfadoxine is conferred by multiple dhps mutations, the prevalence of which varies spatially in Africa. 
+
+A surveillance survey in site A was conducted to quantify the prevalence of dhps mutations in children diagnosed with malaria. Blood spots were collected and samples were sequenced at the dhps gene in the following loci: 436, 437, 540, 581, 613.
+
+
+
+
+```{r echo=FALSE, out.width='80%'}
+
+knitr::include_graphics('images/image1_codons.png')
+```
+
+Each row represents a sample from an individual patient. We can view the first few rows of the dataset:
+
+```{r}
+head(data)
+```
+
+An individual may be infected by multiple genotypes at the same time, and these can be detected in their blood sample. For instance, "KE" at the 540 codon indicates a mixed infection at the 540 codon position.
+
+
+
+We are going to use the tbl_summary function to calculate the proportions of each mutation for each  of the 5 loci listed above. Run the code below which shows how to calculate this for the first 4 loci, and edit the code to display the same proportion for dhps 613S.
+```{r q_prev_dhps, exercise = TRUE, exercise.eval = FALSE}
+
+#### calculate the prevalence of each mutation
+data %>% 
+  tbl_summary(include = c("dhps_436","dhps_437", "dhps_540", "dhps_581"),
+  digits = list(all_categorical() ~ c(0, 2))) %>% add_n() %>% 
+  modify_header(label = "Resistance Marker")  
+
+```
+
+The prevalence of dhps 436A is 12.5%. What is the prevalence of each of the following mutations? 
+
+```{r prev_437g, echo = FALSE}
+question('What is the prevalence of: dhps 437G?', 
+         answer('31.25%', message = 'No'),
+         answer('68.75%', correct = TRUE))
+```
+
+```{r prev_540e, echo = FALSE}
+question('What is the prevalence of: dhps 540E?', 
+         answer('51.56%', message = 'No'),
+         answer('38.28%', message = 'No'), 
+         answer('10.16%', message = 'No'),
+         answer('61.72%', correct = TRUE))
+```
+
+```{r prev_518g, echo = FALSE}
+question('What is the prevalence of: dhps 581G?', 
+         answer('21.88%', message = 'No'),
+         answer('36.72%', correct = TRUE),
+         answer('14.84%', message = 'No'), 
+         answer('63.28%', message = 'No'))
+```
+
+```{r pre_613s, echo = FALSE}
+question('What is the prevalence of: dhps 613S? (add a line to the code above to obtain this)', 
+         answer('1.56%', correct = TRUE),
+         answer('98.44%', message = 'No'))
+```
+
+
+We can also visualize mutation prevalence graphically:
+
+```{r graph}
+ggplot(data, aes(x= factor(dhps_436) , fill=dhps_436)) + theme_bw()+
+  geom_bar(aes(y=( after_stat(count))/sum(after_stat(count))))+         
+  ylab("Proportion") + xlab("dhps 436") + ggtitle("dhps-436")
+```
+
+
+
+
+## B) Frequency of resistance (SNPs)
+
+Frequency of resistance is a theoretical quantity and is defined as the proportion of parasites with the resistance genotype among the parasite population. The difference between the prevalence of resistance in the infected human population (% of individuals carrying at least one resistant parasite clone) and the frequency of resistance in the parasite population (% of parasite clones which are resistant) is shown by the figure below (for more information see Okell et al. Sci rep 7, 7389 (2017).
+
+```{r echo=FALSE, out.width='80%'}
+
+knitr::include_graphics('images/image2_freqvsprev.png')
+```
+ 
+As a proxy for the frequency of resistance, we can use the proportion of a particular genotype among samples which are unmixed at the loci of interest.  
+For instance, the frequency of dhps 540E is lower than the prevalence and can be estimated as 57.4% (66/(66+49)) (see code below). 
+
+
+
+```{r}
+### 540E
+table(data$dhps_540)
+print(66/(66+49))
+```
+
+What is the frequency of dhps 581G? Edit the code below to generate the result:
+
+
+```{r q_dhps581G, exercise = TRUE, exercise.eval = FALSE}
+### 581G
+table(data$dhps_581)
+
+```
+
+
+
+##  C) Frequency of resistance haplotypes
+
+Next, we can generate a variable ("mixed") to store whether the sample contains any mixed infections at any of the 5 dhps loci:
+
+```{r}
+data$mixed<-0
+data$mixed[which(data$dhps_540=="KE"|data$dhps_581=="AG")]<-1
+```
+
+We can then construct the dhps haplotype for samples which are not mixed and store in a separate column as a string variable ("haplotype") using the following code: 
+
+```{r}
+data<-data %>% mutate(haplotype = case_when(mixed==0  ~ paste0(dhps_436,dhps_437,dhps_540,dhps_581,dhps_613)))
+```
+
+Edit the code below to answer the questions below:
+
+```{r q_haplo_table, exercise = TRUE, exercise.eval=FALSE}
+data$mixed<-0
+data$mixed[which(data$dhps_540=="KE"|data$dhps_581=="AG")]<-1
+### add a line of code to find out how many mixed infections there are.
+
+data<-data %>% mutate(haplotype = case_when(mixed==0  ~ paste0(dhps_436,dhps_437,dhps_540,dhps_581,dhps_613)))
+##edit line below to obtain haplotype frequencies:
+table(data$haplotype)
+
+```
+
+```{r number_mixed, echo = FALSE}
+question('How many samples contain mixed infections at any of the 5 dhps loci?', 
+         answer('0', message = 'No'),
+         answer('25', correct = TRUE),
+         answer('103', message = 'No'),
+         answer('128', message = 'No'))
+```
+
+As a proxy for the frequency of a dhps genotype, we can use the proportion of a particular genotype among samples which are unmixed at the loci of interest.  Using this approach, calculate the frequency of each haplotype by excluding mixed infections.Find the frequency of the following haplotypes:
+```{r freq_SAKAA, echo = FALSE}
+question('dhps SAKAA :', 
+         answer('25.2%', message = 'No'),
+         answer('21.4%', correct = TRUE),
+         answer('27.2%', message = 'No'))
+```
+```{r freq_SGEAA, echo = FALSE}
+question('dhps SGEAA :', 
+         answer('25.2%', correct = TRUE),
+         answer('21.4%', message = 'No'),
+         answer('27.2%', message = 'No'))
+```
+```{r freq_SGEGA, echo = FALSE}
+question('dhps SGEGA :', 
+         answer('25.2%', message = 'No'),
+         answer('21.4%', message = 'No'),
+         answer('27.2%', correct = TRUE))
+```
+
+You can visualize the frequency of haplotypes graphically using a pie chart: 
+
+```{r}
+ggplot(subset(data, !is.na(haplotype)), 
+       aes(x="", y="", fill=haplotype)) +
+       geom_bar(stat="identity", width=1) +
+       coord_polar("y", start=0)+ theme_minimal() +ylab("") +xlab("")
+```
+
